@@ -15,9 +15,9 @@ app.post('/intensify', function(req, res) {
   // team_id, team_domain, channel_id, channel_name, user_id, user_name
   // command, text, response_url
   var intensifiedText = "";
-  if (req.body.command === "/intensify") {
+  // if (req.body.command === "/intensify") {
     intensifiedText = String(req.body.text).toUpperCase().split('').join(' ');
-  }
+  // }
   res.send(intensifiedText);
 });
 
