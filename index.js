@@ -14,11 +14,16 @@ app.post('/intensify', function(req, res) {
   // token=xw0MCnvAjBbDIT4N3oJQhw7R
   // team_id, team_domain, channel_id, channel_name, user_id, user_name
   // command, text, response_url
-  var intensifiedText = "";
+  // var intensifiedText = "";
   // if (req.body.command === "/intensify") {
-    intensifiedText = String(req.body.text).toUpperCase().split('').join(' ');
+    // intensifiedText = String(req.body.text).toUpperCase().split('').join(' ');
   // }
-  res.send(intensifiedText);
+  var intensifiedText = String(req.body.text).toUpperCase().split('').join(' ');
+  var intensifiedResponse = {
+    "response_type": "in_channel",
+    "text": intensifiedText
+  }
+  res.json(intensifiedResponse);
 });
 
 app.listen(3200, function() {
