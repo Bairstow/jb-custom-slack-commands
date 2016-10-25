@@ -4,5 +4,5 @@ FROM mhart/alpine-node
 WORKDIR /src
 ADD . .
 EXPOSE 3200
-CMD ["npm", "install"]
+RUN npm install
 CMD ["node", "index.js"]
