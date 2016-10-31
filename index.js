@@ -24,7 +24,7 @@ app.post('/intensify', function(req, res) {
     "response_type": "ephemeral",
     "text": intensifiedText
   };
-  res.status(200).json(intensifiedResponse);
+  res.status(200).send();
   sendIntenseResponse(req.body);
 });
 
