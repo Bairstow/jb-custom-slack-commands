@@ -1,3 +1,4 @@
+var restler = require('restler');
 var bodyParser = require('body-parser');
 var express = require('express');
 var app = express();
@@ -22,10 +23,27 @@ app.post('/intensify', function(req, res) {
   var intensifiedResponse = {
     "response_type": "ephemeral",
     "text": intensifiedText
-  }
+  };
+  res.status(200);
   res.json(intensifiedResponse);
+  sendIntenseResponse(req.body);
 });
 
 app.listen(3200, function() {
   console.log('Custom Slack Command app listening on port 3200');
 });
+
+var sendIntenseResponse = function(requestInfo) {
+  var intensifiedText = String(requestInfo.text).toUpperCase().split('').join(' ');
+  var intensifiedResponse = {
+    "response_type": "in_channel",
+    "text": intensifiedText
+  };
+  restler.post(
+    requestInfo.response_url,
+    {
+      data: JSON.stringify(intensifiedResponse),
+      headers: { "Content-Type": "application/json" }
+    }
+  )
+}
