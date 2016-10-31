@@ -20,7 +20,7 @@ app.post('/intensify', function(req, res) {
   // }
   var intensifiedText = String(req.body.text).toUpperCase().split('').join(' ');
   var intensifiedResponse = {
-    "response_type": "in_channel",
+    "response_type": "ephemeral",
     "text": intensifiedText
   }
   res.json(intensifiedResponse);
