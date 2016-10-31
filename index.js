@@ -15,15 +15,6 @@ app.post('/intensify', function(req, res) {
   // token=xw0MCnvAjBbDIT4N3oJQhw7R
   // team_id, team_domain, channel_id, channel_name, user_id, user_name
   // command, text, response_url
-  // var intensifiedText = "";
-  // if (req.body.command === "/intensify") {
-    // intensifiedText = String(req.body.text).toUpperCase().split('').join(' ');
-  // }
-  var intensifiedText = String(req.body.text).toUpperCase().split('').join(' ');
-  var intensifiedResponse = {
-    "response_type": "ephemeral",
-    "text": intensifiedText
-  };
   res.status(200).send();
   sendIntenseResponse(req.body);
 });
@@ -33,7 +24,6 @@ app.listen(3200, function() {
 });
 
 var sendIntenseResponse = function(requestInfo) {
-  console.log(requestInfo);
   var intensifiedText = String(requestInfo.text).toUpperCase().split('').join(' ');
   var intensifiedResponse = {
     "response_type": "in_channel",
