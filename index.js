@@ -26,7 +26,7 @@ app.post('/intensify', function(req, res) {
   };
   res.status(200);
   res.json(intensifiedResponse);
-  sendIntenseResponse(req.body);
+  // sendIntenseResponse(req.body);
 });
 
 app.listen(3200, function() {
@@ -34,15 +34,17 @@ app.listen(3200, function() {
 });
 
 var sendIntenseResponse = function(requestInfo) {
+  console.log(requestInfo);
   var intensifiedText = String(requestInfo.text).toUpperCase().split('').join(' ');
   var intensifiedResponse = {
     "response_type": "in_channel",
     "text": intensifiedText
   };
+  var intensifiedResponseJSON = JSON.stringify(intensifiedResponse);
   restler.post(
     requestInfo.response_url,
     {
-      data: JSON.stringify(intensifiedResponse),
+      data: intensifiedResponseJSON,
       headers: { "Content-Type": "application/json" }
     }
   )
