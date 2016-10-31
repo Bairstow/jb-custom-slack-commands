@@ -25,7 +25,7 @@ app.post('/intensify', function(req, res) {
     "text": intensifiedText
   };
   res.status(200).json(intensifiedResponse);
-  // sendIntenseResponse(req.body);
+  sendIntenseResponse(req.body);
 });
 
 app.listen(3200, function() {
