@@ -1,8 +1,6 @@
-# set base image
-FROM mhart/alpine-node
-
+FROM mhart/alpine-node:base-6
 WORKDIR /src
 ADD . .
 EXPOSE 3200
 RUN npm install
-CMD ["node", "index.js"]
+CMD ["node", "server.js"]
