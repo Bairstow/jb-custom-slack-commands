@@ -1,8 +1,7 @@
 pipeline {
   agent any
   parameters {
-    string(name: "image", defaultValue: "jb-custom-slack-commands:1.0.${env.BUILD_ID}", description: "Custom Slack
-    Commands docker image label")
+    string(name: "image", defaultValue: "jb-custom-slack-commands:1.0.${env.BUILD_ID}", description: "Custom Slack Commands docker image label")
     string(name: "container", defaultValue: "slack-commands-container", description: "Container label")
   }
   stages{
