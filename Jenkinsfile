@@ -5,6 +5,16 @@ pipeline {
     string(name: "container", defaultValue: "slack-commands-container", description: "Container label")
   }
   stages{
+    stage("Specification") {
+      steps {
+        def tokenInput = input(
+          id: 'tokenInput', message: 'Enter slash command token value: ', parameters: [
+            [$class: 'TextParameterDefinition', defaultValue: 'none', description: 'Slack Token', name: 'token']
+          ]
+        )
+        echo ("Input token: " + tokenInput)
+      }
+    }
     stage("Build") {
       steps {
         echo "Building ${params.image}..."
