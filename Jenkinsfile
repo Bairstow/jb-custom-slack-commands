@@ -5,23 +5,31 @@ pipeline {
     string(name: "container", defaultValue: "slack-commands-container", description: "Container label")
   }
   stages{
-    stage("Specification") {
-      steps {
-        echo ("Input token: ")
+    node() {
+      stage("Setup") {
+        steps {
+          def yesNoInput = input(message: 'Yes?', ok: 'Yes',
+            parameters: [booleanParam(defaultValue: true, description: 'Push it', name: 'Yes?')])
+          echo "Input token: " + yesNoInput
+        }
       }
     }
     stage("Build") {
-      steps {
-        echo "Building ${params.image}..."
-        checkout scm
-        sh "docker build -t ${params.image} ."
+    node() {
+        steps {
+          echo "Building ${params.image}..."
+          checkout scm
+          sh "docker build -t ${params.image} ."
+        }
       }
     }
     stage("Deploy") {
-      steps {
-        echo "Deploying container..."
-        sh "docker stop ${params.container} && docker rm ${params.container} || true"
-        sh "docker run --name ${params.container} -p=3200:3200 --restart=always -d ${params.image}"
+    node() {
+        steps {
+          echo "Deploying container..."
+          sh "docker stop ${params.container} && docker rm ${params.container} || true"
+          sh "docker run --name ${params.container} -p=3200:3200 --restart=always -d ${params.image}"
+        }
       }
     }
   }
