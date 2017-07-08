@@ -8,8 +8,8 @@ pipeline {
     stage("Setup") {
       steps {
         script {
-          def tokenInput = input(message: "Store input in script def?", ok: 'Yes',
-            parameters: [booleanParam(defaultValue: true, description: "Yes?", name: "Yes?")])
+          def tokenInput = input(message: "Input slack token:", ok: 'Proceed',
+            parameters: [string(defaultValue: 'none', description: 'Slack Token', name: 'token'])
           echo "Input token: " + tokenInput
         }
       }
