@@ -6,10 +6,9 @@ pipeline {
   }
   stages{
     stage("Setup") {
-      def yesNoInput = input(message: 'Yes?', ok: 'Yes',
-        parameters: [booleanParam(defaultValue: true, description: 'Push it', name: 'Yes?')])
       steps {
-        echo "Input token: " + yesNoInput
+        input "Setup input?"
+        echo "Input token: "
       }
     }
     stage("Build") {
