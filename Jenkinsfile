@@ -8,9 +8,10 @@ pipeline {
     stage("Specification") {
       steps {
         def tokenInput = input(
-          id: 'tokenInput', message: 'Enter slash command token value: ', parameters: [
-            [$class: 'TextParameterDefinition', defaultValue: 'none', description: 'Slack Token', name: 'token']
-          ]
+          id: "tokenInput",
+          message: "Enter slash command token value: ",
+          ok: "ok",
+          parameters: [string(defaultValue: "none", description: "Slack Token", name: "token")]
         )
         echo ("Input token: " + tokenInput)
       }
