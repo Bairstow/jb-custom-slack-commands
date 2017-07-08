@@ -7,7 +7,7 @@ pipeline {
   stages{
     stage("Setup") {
       steps {
-        input "Setup input?"
+        input(message: 'Setup input with message?")
         echo "Input token: "
       }
     }
