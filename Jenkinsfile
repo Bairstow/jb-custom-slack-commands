@@ -7,8 +7,10 @@ pipeline {
   stages{
     stage("Setup") {
       steps {
-        input message: "Setup input with message?"
-        echo "Input token: "
+        script {
+          def tokenInput = input(message: "Store input in script def?")
+        }
+        echo "Input token: " + tokenInput
       }
     }
     stage("Build") {
