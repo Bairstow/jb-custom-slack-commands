@@ -8,7 +8,8 @@ pipeline {
     stage("Setup") {
       steps {
         script {
-          def tokenInput = input(message: "Store input in script def?")
+          def tokenInput = input(message: "Store input in script def?", ok: 'Yes',
+            parameters: [booleanParam(defaultValue: true, description: "Yes?", name: "Yes?")])
         }
         echo "Input token: " + tokenInput
       }
