@@ -9,7 +9,7 @@ pipeline {
       steps {
         script {
           def tokenInput = input(message: "Input slack token:", ok: 'Proceed',
-            parameters: {string(name: 'token', defaultValue: 'none', description: 'Slack token')})
+            parameters: [string(name: 'token', defaultValue: 'none', description: 'Slack token')])
           echo "Input token: " + tokenInput
         }
       }
