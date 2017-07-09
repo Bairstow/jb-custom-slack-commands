@@ -3,17 +3,10 @@ pipeline {
   parameters {
     string(name: "image", defaultValue: "jb-custom-slack-commands:1.0.${env.BUILD_ID}", description: "Custom Slack Commands docker image label")
     string(name: "container", defaultValue: "slack-commands-container", description: "Container label")
+    string(name: "slackToken", defaultValue: "none", description: "Slack token")
+    string(name: "port", defaultValue: "3200", description: "Port specification")
   }
   stages{
-    stage("Setup") {
-      steps {
-        script {
-          def tokenInput = input(message: "Input slack token:", ok: 'Proceed',
-            parameters: [string(name: 'token', defaultValue: 'none', description: 'Slack token')])
-          echo "Input token: ${tokenInput}"
-        }
-      }
-    }
     stage("Build") {
       steps {
         echo "Building ${params.image}..."
@@ -25,7 +18,7 @@ pipeline {
       steps {
         echo "Deploying container..."
         sh "docker stop ${params.container} && docker rm ${params.container} || true"
-        sh "docker run --name ${params.container} -p=3200:3200 --restart=always -d ${params.image}"
+        sh "docker run --name ${params.container} -p=3200:${params.port} -e SLACK_TOKEN=${params.slackToken} --restart=always -d ${params.image}"
       }
     }
   }
