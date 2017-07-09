@@ -12,7 +12,6 @@ const {
 } = responseService;
 
 const { SLACK_TOKEN: slackToken, PORT } = process.env;
-const parsedToken = Number(slackToken);
 const port = PORT || 3200;
 
 const app = express();
@@ -25,8 +24,8 @@ app.get('/', (req, res) => {
 app.post('/intensify', (req, res) => {
   const { body } = req;
   const { token, text, response_url } = body;
-  console.log(`Request with token: ${token} made against ${parsedToken}`);
-  if (requestParser.verifyRequest(token, parsedToken)) {
+  console.log(`Request with token: ${token} made against ${slackToken}`);
+  if (requestParser.verifyRequest(token, slackToken)) {
     console.log('Request verified successfully');
     const intenseText = intensify.generateIntenseText(text);
     console.log(`Intensified text: ${intenseText}`);
