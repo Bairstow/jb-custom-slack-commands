@@ -26,9 +26,9 @@ app.post('/intensify', (req, res) => {
   const { token, text, response_url } = body;
   console.log(`Request made for ${response_url}`);
   if (requestParser.verifyRequest(token, slackToken)) {
-    const intenseText = textify.generateText(text);
+    const parsedResult = textify.generateText(text);
     res.status(200).send();
-    const responseData = generateJSONResponseWithText(intenseText);
+    const responseData = generateJSONResponseWithText(parsedResult.text);
     postToResponseURL(responseData, response_url);
   } else {
     res.status(400).send();
