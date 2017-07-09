@@ -11,7 +11,7 @@ pipeline {
       steps {
         echo "Building ${params.image}..."
         checkout scm
-        docker.build("${params.image}", ".")
+        sh "docker build -t ${params.image} ."
       }
     }
     stage("Deploy") {
