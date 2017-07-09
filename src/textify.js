@@ -54,7 +54,7 @@ const generateText = (inputText) => {
   if (hasModifierSyntax && hasValidModifier) {
     result.text = generateTextWithModifier(display, modifier);
   } else {
-    result.text = generateTextWithModifier(display, 'intensify');
+    result.text = generateTextWithModifier(display, 'spacify');
   }
 
   return result;
