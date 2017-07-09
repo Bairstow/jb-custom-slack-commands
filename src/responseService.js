@@ -19,7 +19,6 @@ const generateURLEncodedResponseWithText = (text) => {
 };
 
 const postToResponseURL = (responseData, responseURL) => {
-  console.log(`Posting to URL: ${responseURL}`);
   restler.post(
     responseURL,
     {
@@ -32,7 +31,6 @@ const postToResponseURL = (responseData, responseURL) => {
 };
 
 const postMessageToChat = (responseData) => {
-  console.log('Posting chat message');
   const chatURL = 'https://slack.com/api/chat.postMessage';
   const postData = generateURLEncodedResponseWithText('test string');
   restler.post(

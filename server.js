@@ -24,11 +24,9 @@ app.get('/', (req, res) => {
 app.post('/intensify', (req, res) => {
   const { body } = req;
   const { token, text, response_url } = body;
-  console.log(`Request with token: ${token} made against ${slackToken}`);
+  console.log(`Request made for ${response_url}`);
   if (requestParser.verifyRequest(token, slackToken)) {
-    console.log('Request verified successfully');
     const intenseText = intensify.generateIntenseText(text);
-    console.log(`Intensified text: ${intenseText}`);
     res.status(200).send();
     const responseData = generateJSONResponseWithText(intenseText);
     postToResponseURL(responseData, response_url);

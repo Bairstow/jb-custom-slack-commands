@@ -3,7 +3,7 @@ pipeline {
   parameters {
     string(name: "image", defaultValue: "jb-custom-slack-commands:1.0.${env.BUILD_ID}", description: "Custom Slack Commands docker image label")
     string(name: "container", defaultValue: "slack-commands-container", description: "Container label")
-    string(name: "slackToken", defaultValue: "xw0MCnvAjBbDIT4N3oJQhw7R", description: "Slack token")
+    string(name: "slackToken", defaultValue: "none", description: "Slack token")
     string(name: "port", defaultValue: "3200", description: "Port specification")
   }
   stages{
