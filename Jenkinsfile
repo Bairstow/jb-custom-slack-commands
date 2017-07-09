@@ -12,7 +12,7 @@ pipeline {
             parameters: [string(name: 'token', defaultValue: 'none', description: 'Slack token')])
           echo "Input token: " + tokenInput
         }
-        echo "Parameter fetch: " + ${params.token}
+        echo "Out of script fetch: " + tokenInput
       }
     }
     stage("Build") {
