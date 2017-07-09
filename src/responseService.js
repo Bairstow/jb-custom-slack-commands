@@ -4,8 +4,6 @@ const queryString = require('query-string');
 const generateJSONResponseWithText = (text) => {
   return JSON.stringify({
     'response_type': 'in_channel',
-    'username': 'mock bot',
-    'mrkdwn': true,
     'text': text
   });
 };

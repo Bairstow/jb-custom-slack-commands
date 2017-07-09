@@ -2,7 +2,7 @@ const bodyParser = require('body-parser');
 const express = require('express');
 
 const requestParser = require('./src/requestParser');
-const intensify = require('./src/intensify');
+const textify = require('./src/textify');
 const responseService = require('./src/responseService');
 const {
   generateJSONResponseWithText,
@@ -26,7 +26,7 @@ app.post('/intensify', (req, res) => {
   const { token, text, response_url } = body;
   console.log(`Request made for ${response_url}`);
   if (requestParser.verifyRequest(token, slackToken)) {
-    const intenseText = intensify.generateIntenseText(text);
+    const intenseText = textify.generateText(text);
     res.status(200).send();
     const responseData = generateJSONResponseWithText(intenseText);
     postToResponseURL(responseData, response_url);
