@@ -16,7 +16,7 @@ pipeline {
     }
     stage("Deploy") {
       steps {
-        echo "Deploying container..."
+        echo "Deploying container on port ${params.port}..."
         sh "docker stop ${params.container} && docker rm ${params.container} || true"
         sh "docker run --name ${params.container} -p=3200:${params.port} -e SLACK_TOKEN=${params.slackToken} --restart=always -d ${params.image}"
       }
