@@ -29,7 +29,7 @@ const parseInputTextForModifier = (inputText) => {
   if (hasInitialColon && hasSecondColon) {
     splitText.hasModifierSyntax = true;
     splitText.modifier = trimmedText.substring((initialColonIndex + 1), secondColonIndex);
-    splitText.display = trimmedText.substring(secondColonIndex + 1);
+    splitText.display = trimmedText.substring(secondColonIndex + 1).trimLeft();
   }
   return splitText;
 };
