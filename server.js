@@ -11,7 +11,7 @@ const {
   postMessageToChat
 } = responseService;
 
-const { SLACK_TOKEN: slackToken, PORT } = process.env;
+const { SLACK_TOKEN: slackToken, SLACK_WEBHOOK: slackWebhook, PORT } = process.env;
 const port = PORT || 3200;
 
 const app = express();
@@ -29,7 +29,7 @@ app.post('/intensify', (req, res) => {
     const parsedResult = textify.generateText(text);
     res.status(200).send();
     const responseData = generateJSONResponseWithText(parsedResult.text);
-    postToResponseURL(responseData, response_url);
+    postToResponseURL(responseData, slackWebhook);
   } else {
     res.status(400).send();
   }

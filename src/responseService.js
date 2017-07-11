@@ -22,10 +22,10 @@ const postToResponseURL = (responseData, responseURL) => {
   restler.post(
     responseURL,
     {
-      data: responseData,
       headers: {
         'Content-Type': 'application/json'
-      }
+      },
+      data: responseData
     }
   );
 };
