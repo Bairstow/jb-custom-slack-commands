@@ -28,8 +28,8 @@ app.post('/intensify', (req, res) => {
   if (requestParser.verifyRequest(token, slackToken)) {
     const parsedResult = textify.generateText(text);
     res.status(200).send();
-    const responseData = generateJSONResponseWithText(parsedResult.text);
-    postToResponseURL(responseData, slackWebhook);
+    const responseData = generateJSONResponseWithText(parsedResult.text, body);
+    postToResponseURL(responseData, response_url);
   } else {
     res.status(400).send();
   }
