@@ -4,7 +4,7 @@ const queryString = require('query-string');
 const generateJSONResponseWithText = (text, reqBody) => {
   return JSON.stringify({
     'response_type': 'in_channel',
-    'as_user': false,
+    'as_user': true,
     'username': reqBody.user_name,
     'icon_url': 'http://lorempixel.com/48/48',
     'channel': `${reqBody.channel_name}`,
